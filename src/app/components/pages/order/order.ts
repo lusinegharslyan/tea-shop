@@ -1,0 +1,95 @@
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {ProductService} from '../../../services/product.service';
+import {ProductOrderType} from '../../../types/product-order';
+import {CommonModule} from '@angular/common';
+import {CustomValidators} from '../../../shared/custom-validators';
+
+@Component({
+  selector: 'app-order',
+  imports: [CommonModule, ReactiveFormsModule],
+  templateUrl: './order.html',
+  styleUrl: './order.scss',
+})
+export class Order implements OnInit {
+  showOrderConfirmation: boolean = false;
+  orderForm!: FormGroup;
+  validateForm: boolean = false;
+  showErrorMessage: boolean = false;
+  disableSubmitButton: boolean = false;
+
+  constructor(private productService: ProductService,
+              private fb: FormBuilder) {
+  }
+
+  ngOnInit() {
+    this.orderForm = this.fb.group({
+      name: ['', [Validators.required, Validators.pattern('^[А-Яа-яЁё]+$')]],
+      last_name: ['', [Validators.required, Validators.pattern('^[А-Яа-яЁё]+$')]],
+      phone: ['', [Validators.required, Validators.pattern('^[0-9+]+$'), CustomValidators.phoneNumberValidator]],
+      country: ['', [Validators.required, Validators.pattern(/^[А-Яа-яЁё0-9\s.,!?;:()"'«»\-_/\\@#$%^&*+=<>[\]{}|`~]*$/)]],
+      zip: ['', [Validators.required]],
+      product: ['', [Validators.required]],
+      address: ['', [Validators.required, Validators.pattern('^[А-Яа-яЁё0-9\/\-\s]+$')]],
+      comment: ['', [Validators.pattern(/^[А-Яа-яЁё0-9\s.,!?;:()"'«»\-_/\\@#$%^&*+=<>[\]{}|`~]*$/)]]
+    })
+    this.orderForm.patchValue({
+      product: this.productService.currentProduct?.title
+    });
+  }
+
+  get product() {
+    return this.orderForm.get('product');
+  }
+
+  get comment() {
+    return this.orderForm.get('comment');
+  }
+
+  get name() {
+    return this.orderForm.get('name');
+  }
+
+  get lastName() {
+    return this.orderForm.get('last_name');
+  }
+
+  get phone() {
+    return this.orderForm.get('phone');
+  }
+
+  get country() {
+    return this.orderForm.get('country');
+  }
+
+  get zip() {
+    return this.orderForm.get('zip');
+  }
+
+  get address() {
+    return this.orderForm.get('address');
+  }
+
+  public submitOrder(): void {
+    this.validateForm = true;
+
+    if (this.orderForm.invalid) return;
+
+    this.disableSubmitButton = true;
+    this.productService.orderProduct(this.orderForm.value as ProductOrderType).subscribe(response => {
+      if (response.success === 1) {
+        this.showOrderConfirmation = true;
+
+        setTimeout(() => {
+          this.showOrderConfirmation = false;
+        }, 3000);
+      } else if (response.success === 0) {
+        this.showErrorMessage = true;
+        setTimeout(() => {
+          this.showErrorMessage = false;
+        }, 3000);
+      }
+      this.disableSubmitButton = false;
+    });
+  }
+}

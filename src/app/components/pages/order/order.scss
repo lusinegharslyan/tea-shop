@@ -1,0 +1,11 @@
+.invalid-feedback{
+  display: block;
+}
+input.ng-invalid.ng-touched,
+input.ng-invalid.ng-dirty{
+  border-color: red !important;
+}
+
+.order{
+  min-height: calc(100vh - 175px);
+}

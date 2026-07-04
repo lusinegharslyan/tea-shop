@@ -1,0 +1,18 @@
+<div class="catalog m-auto" style="max-width: 1140px">
+  <h1 class="m-5 text-center  wow animate__animated animate__backInUp">{{ pageTitle }}</h1>
+  <div class="row  g-4 mb-4">
+    <div class="col-lg-4 col-sm-6 wow animate__animated animate__backInUp" *ngFor="let product of products">
+      <div class="card ">
+        <a class="image" href="#">
+          <img [src]="product.image" class="card-img-top " alt="...">
+        </a>
+        <div class="card-body">
+          <h5 class="card-title">{{ product.title }}</h5>
+          <p class="card-text text-truncate w-92">{{ product.description }}</p>
+          <button class="btn btn-primary px-5 py-2 hvr-rectangle-out" (click)="showProductDetails(product)">Подробнее
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="m-auto pt-5 wow animate__animated animate__backInUp" style="width: 700px; " *ngIf="productService.currentProduct">
+  <div class="card ">
+    <a class="image" href="#">
+      <img [src]="productService.currentProduct.image" class="card-img-top " alt="...">
+    </a>
+    <div class="card-body">
+      <h5 class="card-title">{{ productService.currentProduct.title }}</h5>
+      <p class="card-text"  >{{ productService.currentProduct.description }}</p>
+     <div class="d-flex justify-content-between">
+      <a href="#" class="btn btn-primary px-5 py-2 hvr-rectangle-out "   [routerLink]="'/order'">Купить</a>
+      <span class="">Цена
+        <span class="fs-5 text-black"> {{productService.currentProduct.price | currency:'RUB':'руб.':'1.2-2':'ru'}}</span>
+      </span>
+     </div>
+    </div>
+  </div>
+</div>
