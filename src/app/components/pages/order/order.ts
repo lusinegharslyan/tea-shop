@@ -4,6 +4,8 @@ import {ProductService} from '../../../services/product.service';
 import {ProductOrderType} from '../../../types/product-order';
 import {CommonModule} from '@angular/common';
 import {CustomValidators} from '../../../shared/custom-validators';
+import {Router} from '@angular/router';
+import {OrderResponse} from '../../../types/order-response';
 
 @Component({
   selector: 'app-order',
@@ -13,13 +15,13 @@ import {CustomValidators} from '../../../shared/custom-validators';
 })
 export class Order implements OnInit {
   showOrderConfirmation: boolean = false;
-  orderForm!: FormGroup;
+  orderForm: FormGroup = new FormGroup({});
   validateForm: boolean = false;
   showErrorMessage: boolean = false;
-  disableSubmitButton: boolean = false;
 
   constructor(private productService: ProductService,
-              private fb: FormBuilder) {
+              private fb: FormBuilder,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -32,7 +34,13 @@ export class Order implements OnInit {
       product: ['', [Validators.required]],
       address: ['', [Validators.required, Validators.pattern('^[А-Яа-яЁё0-9\/\-\s]+$')]],
       comment: ['', [Validators.pattern(/^[А-Яа-яЁё0-9\s.,!?;:()"'«»\-_/\\@#$%^&*+=<>[\]{}|`~]*$/)]]
-    })
+    });
+
+    const savedProduct = localStorage.getItem('currentProduct');
+
+    if (savedProduct) {
+      this.productService.currentProduct = JSON.parse(savedProduct);
+    }
     this.orderForm.patchValue({
       product: this.productService.currentProduct?.title
     });
@@ -75,21 +83,22 @@ export class Order implements OnInit {
 
     if (this.orderForm.invalid) return;
 
-    this.disableSubmitButton = true;
-    this.productService.orderProduct(this.orderForm.value as ProductOrderType).subscribe(response => {
+    this.productService.orderProduct(this.orderForm.value as ProductOrderType).subscribe((response:OrderResponse) => {
+
       if (response.success === 1) {
         this.showOrderConfirmation = true;
-
-        setTimeout(() => {
-          this.showOrderConfirmation = false;
-        }, 3000);
       } else if (response.success === 0) {
         this.showErrorMessage = true;
-        setTimeout(() => {
-          this.showErrorMessage = false;
-        }, 3000);
       }
-      this.disableSubmitButton = false;
+
+      this.orderForm.reset();
+
+      setTimeout((): void => {
+        this.showErrorMessage = false;
+        this.showOrderConfirmation = false;
+        this.router.navigate(['/catalog']);
+      }, 3000);
+
     });
   }
 }

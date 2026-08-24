@@ -2,12 +2,13 @@ import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {Router} from '@angular/router';
 import {Observable, Subscription} from 'rxjs';
+import {NgbAccordionModule} from '@ng-bootstrap/ng-bootstrap';
 
 declare var $: any;
 
 @Component({
   selector: 'app-main',
-  imports: [CommonModule],
+  imports: [CommonModule, NgbAccordionModule],
   templateUrl: './main.html',
   styleUrl: './main.scss',
 })
@@ -15,6 +16,24 @@ export class Main implements OnInit, AfterViewInit, OnDestroy {
   openShowCatalogPopup: boolean = false;
   private observable: Observable<boolean>;
   private subscription: Subscription | null = null;
+  items = [
+    {
+      title: 'Собираете ли вы подарочные боксы?',
+      body: 'Да, у нас есть такая услуга. Мы можем собрать подарочный бокс.'
+    },
+    {
+      title: 'Сколько у вас разновидностей чая?',
+      body: 'Да, у нас есть такая услуга. Мы можем собрать подарочный бокс на любой вкус,объем и стоимость!'
+    },
+    {
+      title: 'В какой срок осуществляется доставка?',
+      body: 'Да, у нас есть такая услуга. Мы можем собрать подарочный бокс на любой вкус,объем и стоимость!'
+    },
+    {
+      title: 'Какого объема у вас пачки чая?',
+      body: 'Да, у нас есть такая услуга. Мы можем собрать подарочный бокс на любой вкус,объем и стоимость!'
+    }
+  ];
 
   constructor(
     private router: Router) {

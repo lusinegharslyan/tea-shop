@@ -7,43 +7,26 @@
 
   <div class="row  wow animate__animated animate__backInUp ">
     <h2 class="text-center mb-5 mt-5">Ответы на часто задаваемые вопросы</h2>
-    <div id="accordion" class="col-lg-8  m-auto">
-      <h3 class=" bg-primary rounded-3 text-light py-3 d-flex justify-content-between  mb-3 hvr-sweep-to-bottom ">
-        Собираете ли вы подарочные боксы?</h3>
-      <div class="border-0">
-        <p>
-          Да, у нас есть такая услуга. Мы можем собрать подарочный бокс на любой вкус,
-          объем и стоимость!
-        </p>
-      </div>
-      <h3 class="bg-primary rounded-3 text-light py-3 d-flex justify-content-between mb-3 hvr-sweep-to-bottom ">
-        Сколько
-        у вас разновидностей чая?</h3>
-      <div class="border-0">
-        <p>
-          Да, у нас есть такая услуга. Мы можем собрать подарочный бокс на любой вкус,
-          объем и стоимость!
-        </p>
-      </div>
-      <h3 class="bg-primary rounded-3 text-light py-3 d-flex justify-content-between mb-3 hvr-sweep-to-bottom ">В
-        какой
-        срок осуществляется доставка?</h3>
-      <div class="border-0">
-        <p>
-          Да, у нас есть такая услуга. Мы можем собрать подарочный бокс на любой вкус,
-          объем и стоимость!
-        </p>
-      </div>
-      <h3 class="bg-primary rounded-3 text-light py-3 d-flex justify-content-between mb-3 hvr-sweep-to-bottom ">
-        Какого
-        объема у вас пачки чая?</h3>
-      <div class="border-0">
-        <p>
-          Да, у нас есть такая услуга. Мы можем собрать подарочный бокс на любой вкус,
-          объем и стоимость!
-        </p>
-      </div>
+    <div ngbAccordion [closeOthers]="true" class="custom-accordion">
+      @for (item of items; track item.title) {
+        <div ngbAccordionItem class="bg-primary rounded-3 text-light ">
+          <h2 ngbAccordionHeader >
+            <button ngbAccordionButton >
+              {{ item.title }}
+            </button>
+          </h2>
+
+          <div ngbAccordionCollapse>
+            <div ngbAccordionBody>
+              <ng-template>
+                {{ item.body }}
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      }
     </div>
+
   </div>
 
   <div *ngIf="openShowCatalogPopup" class="modal modal-sheet position-absolute d-block p-4 py-md-5"

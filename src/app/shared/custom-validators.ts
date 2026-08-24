@@ -3,7 +3,7 @@ import {AbstractControl, ValidationErrors} from '@angular/forms';
 export class CustomValidators {
   static phoneNumberValidator(control: AbstractControl): ValidationErrors | null {
     const value = control.value;
-    if (!value.length){
+    if (!value ){
       return null;
     }
     if (value.startsWith('+') && value.lastIndexOf('+') == 0) {

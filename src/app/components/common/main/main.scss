@@ -1,3 +1,39 @@
-.modal{
+.modal {
   background: rgba(255, 255, 255, 0.85);
+}
+
+.container {
+  min-height: calc(100vh - 175px);
+}
+
+.custom-accordion {
+  .accordion-item {
+    border: none;
+    margin-bottom: 12px;
+    overflow: hidden;
+  }
+
+  .accordion-button {
+    background: #f8f9fa;
+    color: #333;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 1rem 1.25rem;
+    box-shadow: none;
+  }
+
+  .accordion-button:not(.collapsed) {
+    background: var(--bs-primary);
+    color: #f8f9fa
+  }
+
+  .accordion-button:focus {
+    box-shadow: none;
+  }
+
+  .accordion-body {
+    background: white;
+    color: #333;
+    padding: 1rem 1.25rem;
+  }
 }

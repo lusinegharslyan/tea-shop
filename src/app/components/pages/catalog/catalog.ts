@@ -45,6 +45,7 @@ export class Catalog implements OnInit {
 
   public showProductDetails(product: ProductType): void {
     this.productService.currentProduct = product;
+    localStorage.setItem('currentProduct', JSON.stringify(product));
     this.router.navigate(['/product']);
   }
 }

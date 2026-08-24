@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
 import {ProductType} from '../types/product-type';
 import {ProductOrderType} from '../types/product-order';
+import {OrderResponse} from '../types/order-response';
 
 @Injectable({
   providedIn: 'root',
@@ -26,8 +27,8 @@ export class ProductService {
     }
   }
 
-  public orderProduct(order: ProductOrderType): Observable<any> {
-    return this.http.post<any>('https://testologia.ru/order-tea', order);
+  public orderProduct(order: ProductOrderType): Observable<OrderResponse> {
+    return this.http.post<OrderResponse>('https://testologia.ru/order-tea', order);
   }
 
   public searchProduct(value: string): void {
