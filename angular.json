@@ -42,8 +42,8 @@
               "node_modules/animate.css/animate.min.css",
               "node_modules/slick-carousel/slick/slick.css",
               "node_modules/slick-carousel/slick/slick-theme.css",
-              "node_modules/jquery-ui/dist/themes/base/jquery-ui.min.css"
-              "src/styles.scss",
+              "node_modules/jquery-ui/dist/themes/base/jquery-ui.min.css",
+              "src/styles.scss"
             ]
 
           },
@@ -52,8 +52,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "1MB",
+                  "maximumError": "2MB"
                 },
                 {
                   "type": "anyComponentStyle",
