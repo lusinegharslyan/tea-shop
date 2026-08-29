@@ -43,15 +43,15 @@
   width: 20px;
   height: 20px;
   background-position: center;
-  background-image: url("/images/arrow_down.svg");
+  background-image: url("/tea-shop/images/arrow_down.svg");
 }
 
 .ui-state-active .ui-icon {
-  background-image: url("/images/arrow_up.svg");
+  background-image: url("/tea-shop/images/arrow_up.svg");
 }
 
 .ui-state-hover .ui-icon{
-  background-image: url("/images/arrow_down.svg") !important;
+  background-image: url("/tea-shop/images/arrow_down.svg") !important;
 }
 
 .hvr-rectangle-out {
