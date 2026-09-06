@@ -1,14 +1,12 @@
 import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
-import {CommonModule} from '@angular/common';
 import {Router} from '@angular/router';
 import {Observable, Subscription} from 'rxjs';
-import {NgbAccordionModule} from '@ng-bootstrap/ng-bootstrap';
 
 declare var $: any;
 
 @Component({
   selector: 'app-main',
-  imports: [CommonModule, NgbAccordionModule],
+  standalone: false,
   templateUrl: './main.html',
   styleUrl: './main.scss',
 })

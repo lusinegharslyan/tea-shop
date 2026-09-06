@@ -1,13 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {ProductService} from '../../../services/product.service';
-import {CommonModule} from '@angular/common';
 import {ProductType} from '../../../types/product-type';
 import {Router} from '@angular/router';
 import {Subscription} from 'rxjs';
+import {ProductService} from '../../shared/services/product.service';
 
 @Component({
   selector: 'app-catalog',
-  imports: [CommonModule],
+  standalone: false,
   templateUrl: './catalog.html',
   styleUrl: './catalog.scss',
 })

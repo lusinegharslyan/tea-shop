@@ -1,15 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {ProductService} from '../../../services/product.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ProductOrderType} from '../../../types/product-order';
-import {CommonModule} from '@angular/common';
-import {CustomValidators} from '../../../shared/custom-validators';
 import {Router} from '@angular/router';
 import {OrderResponse} from '../../../types/order-response';
+import {ProductService} from '../../shared/services/product.service';
+import {CustomValidators} from '../../shared/validators/custom-validators';
 
 @Component({
   selector: 'app-order',
-  imports: [CommonModule, ReactiveFormsModule],
+  standalone: false,
   templateUrl: './order.html',
   styleUrl: './order.scss',
 })

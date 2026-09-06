@@ -1,11 +1,9 @@
 import {Component} from '@angular/core';
-import {ProductService} from '../../../services/product.service';
-import {CommonModule} from '@angular/common';
-import {RouterLink} from '@angular/router';
+import {ProductService} from '../../shared/services/product.service';
 
 @Component({
   selector: 'app-product',
-  imports: [CommonModule, RouterLink],
+  standalone: false,
   templateUrl: './product.html',
   styleUrl: './product.scss',
 })
